@@ -19,6 +19,13 @@ alias phpServer="php -S localhost:8080"
 # Set up a HTTP server using Python simple server
 alias pythonServer="python -m SimpleHTTPServer 8080"
 
+# Screen aliases
+alias screen12="screen -c ~/screen-layouts/screen1x2" # Screen 1row  x 2columns
+alias screen21="screen -c ~/screen-layouts/screen2x1" # Screen 2rows x 1column
+alias screen22="screen -c ~/screen-layouts/screen2x2" # Screen 2rows x 2columns
+alias screen14="screen -c ~/screen-layouts/screen1x4" # Screen 1row  x 4columns
+alias screen41="screen -c ~/screen-layouts/screen4x1" # Screen 4rows x 1column
+
 
 # Autocomplete SCP/SFTP/SSH commands from $HOME/.ssh/config (Requires ruby)
 complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/\s/)[1..-1] if $_.match(/^host/);' < $HOME/.ssh/config)" scp sftp ssh
