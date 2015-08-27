@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# This is only for MacOSX
+if [[ $OSTYPE == "darwin"* ]]; then
+    ssh-add
+fi
+
+# This is only for Linux
+if [[ $OSTYPE == "linux-gnu" ]]; then
+fi
+
+
+# Listing aliases
+alias ll="ls -lah"
+
+# Set up a HTTP server using PHP simple server (requires php >= 5.5)
+alias phpServer="php -S localhost:8080"
+
+# Set up a HTTP server using Python simple server
+alias pythonServer="python -m SimpleHTTPServer 8080"
+
+
+# Autocomplete SCP/SFTP/SSH commands from $HOME/.ssh/config (Requires ruby)
+complete -o default -o nospace -W "$(/usr/bin/env ruby -ne 'puts $_.split(/\s/)[1..-1] if $_.match(/^host/);' < $HOME/.ssh/config)" scp sftp ssh
+
+# Git autocomplete (Requires bash-completion)
+source ~/git-completion/git-completion.bash
+source ~/git-completion/git-prompt.sh
+
+# Git prompt config
+GIT_PS1_SHOWDIRTYSTATE=true
+PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
