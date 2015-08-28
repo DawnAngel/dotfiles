@@ -2,13 +2,17 @@
 
 # This is only for MacOSX
 if [[ $OSTYPE == "darwin"* ]]; then
-    ssh-add
+	if [ -f ~/.bash/profile_macosx ]; then
+	    source ~/.bash/profile_macosx
+	fi
 fi
 
 # This is only for Linux
-# if [[ $OSTYPE == "linux-gnu" ]]; then
-
-# fi
+if [[ $OSTYPE == "linux-gnu" ]]; then
+    if [ -f ~/.bash/profile_linux ]; then
+	    source ~/.bash/profile_linux
+	fi
+fi
 
 
 # Listing aliases
@@ -27,9 +31,8 @@ alias screen22="screen -c ~/screen-layouts/screen2x2" # Screen 2rows x 2columns
 alias screen14="screen -c ~/screen-layouts/screen1x4" # Screen 1row  x 4columns
 alias screen41="screen -c ~/screen-layouts/screen4x1" # Screen 4rows x 1column
 
-if [ -f ~/.bash_aliases ]
-then
-    source ~/.bash_aliases
+if [ -f ~/.bash/aliases ]; then
+    source ~/.bash/aliases
 fi
 
 

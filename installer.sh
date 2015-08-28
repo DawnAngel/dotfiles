@@ -2,66 +2,53 @@
 
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# vim
-if [ ! -L ~/.vimrc ]
-then
-    echo 'LINK: ~/.vimrc [OK]'
-    ln -s ${BASEDIR}/vimrc ~/.vimrc
-else
-    echo 'LINK: ~/.vimrc [Already exists]'
-fi
+check_and_link () {
+    ORIGIN=$1
+    DESTINATION=$2
 
-# bash_profile
-if [ ! -L ~/.bash_profile ]
-then
-    echo 'LINK: ~/.bash_profile [OK]'
-    ln -s ${BASEDIR}/bash_profile ~/.bash_profile
-else
-    echo 'LINK: ~/.bash_profile [Already exists]'
-fi
+    if [ ! -L ~/${DESTINATION} ]; then
+        echo "LINK: ~/${DESTINATION} ✅"
+        ln -s ${BASEDIR}/${ORIGIN} ~/${DESTINATION}
+    else
+        echo "LINK: ~/${DESTINATION} ✘"
+    fi
+}
 
-# bash_aliases
-if [ ! -f ~/.bash_aliases ]
-then
-    echo 'COPY: ~/.bash_aliases [OK]'
-    cp ${BASEDIR}/bash_aliases ~/.bash_aliases
-else
-    echo 'COPY: ~/.bash_aliases [Already exists]'
-fi
+check_and_copy () {
+    ORIGIN=$1
+    DESTINATION=$2
 
-# git config
-if [ ! -L ~/.gitconfig ]
-then
-    echo 'LINK: ~/.gitconfig [OK]'
-    ln -s ${BASEDIR}/gitconfig ~/.gitconfig
-else
-    echo 'LINK: ~/.gitconfig [Already exists]'
-fi
+    if [ ! -f ~/${DESTINATION} ]; then
+        echo "COPY: ~/${DESTINATION} ✅"
+        cp ${BASEDIR}/${ORIGIN} ~/${DESTINATION}
+    else
+        echo "COPY: ~/${DESTINATION} ✘"
+    fi
+}
 
-# git completion
-if [ ! -L ~/git-completion ]
-then
-    echo 'LINK: ~/git-completion/ [OK]'
-    ln -s ${BASEDIR}/git-completion ~/git-completion
-else
-    echo 'LINK: ~/git-completion/ [Already exists]'
-fi
+# LINK .vimrc
+check_and_link "vimrc" ".vimrc"
 
-# ssh
-if [ ! -f ~/.ssh/config ]
-then
-    echo 'COPY: ~/.ssh/config [OK]'
-    mkdir -p ~/.ssh
-    cp ${BASEDIR}/ssh/config ~/.ssh/config
-else
-    echo 'COPY: ~/.ssh/config [Already exists]'
-fi
+# MKDR .bash/
+mkdir -p ~/.bash
+# COPY .bash/aliases
+check_and_copy "bash/aliases" ".bash/aliases"
+# COPY .bash/profile_macosx
+check_and_copy "bash/profile_macosx" ".bash/profile_macosx"
+# COPY .bash/profile_macosx
+check_and_copy "bash/profile_linux" ".bash/profile_linux"
+# LINK .bash_profile
+check_and_link "bash_profile" ".bash_profile"
 
-# screen layouts
-if [ ! -L ~/screen-layouts ]
-then
-    echo 'LINK: ~/screen-layouts/ [OK]'
-    ln -s ${BASEDIR}/screen-layouts ~/screen-layouts
-else
-    echo 'LINK: ~/screen-layouts/ [Already exists]'
-fi
+# LINK git-completion/
+check_and_link "git-completion" "git-completion"
+# LINK .gitconfig
+check_and_link "gitconfig" ".gitconfig"
+
+# MKDR .ssh/
+mkdir -p ~/.ssh
+# COPY .ssh/config
+check_and_copy "ssh/config" ".ssh/config"
+
+# LINK screen-layouts/
+check_and_link "screen-layouts" "screen-layouts"

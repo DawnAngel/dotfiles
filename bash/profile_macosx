@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Add the ssh keys to the current session
+ssh-add
