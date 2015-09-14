@@ -2,3 +2,9 @@
 
 # Add the ssh keys to the current session
 ssh-add
+
+# Adjust the PATH for user local binaries
+PATH="$PATH:/usr/local/bin/"
+
+# Adjust the PATH for macports local binaries (If macports is installed)
+PATH="$PATH:/opt/local/bin:/opt/local/sbin"
