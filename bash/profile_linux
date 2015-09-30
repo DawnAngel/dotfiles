@@ -1,1 +1,7 @@
 #!/bin/bash
+
+# Adjust the PATH for user local binaries
+PATH="$PATH:/usr/local/bin/"
+
+# Adjust the PATH for composer local binaries
+PATH="$PATH:~/.composer/vendor/bin/"

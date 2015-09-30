@@ -6,5 +6,8 @@ ssh-add
 # Adjust the PATH for user local binaries
 PATH="$PATH:/usr/local/bin/"
 
+# Adjust the PATH for composer local binaries
+PATH="$PATH:~/.composer/vendor/bin/"
+
 # Adjust the PATH for macports local binaries (If macports is installed)
-PATH="$PATH:/opt/local/bin:/opt/local/sbin"
+PATH="$PATH:/opt/local/bin:/opt/local/sbin/"
