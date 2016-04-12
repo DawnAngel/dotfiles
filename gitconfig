@@ -39,5 +39,7 @@
         r1 = reset HEAD^
 # tag listing by order
         tags = for-each-ref --count=10 --sort=-taggerdate --format=' %(tag)  -->  %(*authordate)   %(*authoremail)' refs/tags
+# whatthecommit.com alias
+        ciw = commit -m '$(curl -s whatthecommit.com/index.txt)'
 [init]
-	templatedir = ~/git-templates
+        templatedir = ~/git-templates
