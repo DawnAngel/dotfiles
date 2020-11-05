@@ -1,6 +1,6 @@
 [user]
 	name = Eric Pinto
-	email = ericpinto1985@gmail.com
+	email = eric.pinto@socialpoint.es
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -34,11 +34,16 @@
         ls = ls-files
         d1 = show --pretty="format:" --name-only
         d2 = diff --name-only
+        addi = add --interactive
+        fz = fuzzy
+        fdiff = fuzzy diff
+        flog = fuzzy log
+        freflog = fuzzy reflog
 # some resets without explanation
         r = reset
         r1 = reset HEAD^
 # tag listing by order
-        tags = for-each-ref --count=10 --sort=-taggerdate --format=' %(tag)  -->  %(*authordate)   %(*authoremail)' refs/tags
+        tags = for-each-ref --count=10 --sort=-taggerdate --format=' %(refname)  -->  %(*authordate)   %(*authoremail)' refs/tags
 # whatthecommit.com alias
         ciw = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [init]

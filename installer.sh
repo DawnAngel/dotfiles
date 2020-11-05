@@ -29,6 +29,9 @@ check_and_copy () {
 # LINK .vimrc
 check_and_link "vimrc" ".vimrc"
 
+# LINK .bash_profile
+check_and_link "bash_profile" ".bash_profile"
+
 # MKDR .bash/
 mkdir -p ~/.bash
 # COPY .bash/aliases
@@ -37,18 +40,31 @@ check_and_copy "bash/aliases" ".bash/aliases"
 check_and_copy "bash/profile_macosx" ".bash/profile_macosx"
 # COPY .bash/profile_macosx
 check_and_copy "bash/profile_linux" ".bash/profile_linux"
-# LINK .bash_profile
-check_and_link "bash_profile" ".bash_profile"
 
-# LINK git-completion/
-check_and_link "git-completion" "git-completion"
+# MKDR .bash_plugins/
+mkdir -p ~/.bash_plugins
+# LINK .bash_plugins/screen-layouts/
+check_and_link "bash_plugins/screen-layouts" ".bash_plugins/screen-layouts"
+# LINK .bash_plugins/git-completion/
+check_and_link "bash_plugins/git-completion" ".bash_plugins/git-completion"
+# LINK .bash_plugins/kube-completion/
+check_and_link "bash_plugins/kube-completion" ".bash_plugins/kube-completion"
+# LINK .bash_plugins/make-completion/
+check_and_link "bash_plugins/make-completion" ".bash_plugins/make-completion"
+# LINK .bash_plugins/ng-completion/
+check_and_link "bash_plugins/ng-completion" ".bash_plugins/ng-completion"
+# LINK .bash_plugins/npm-completion/
+check_and_link "bash_plugins/npm-completion" ".bash_plugins/npm-completion"
+
+# LINK git-templates/
+check_and_link "git/git-templates" "git-templates"
 # LINK .gitconfig
-check_and_link "gitconfig" ".gitconfig"
+check_and_link "git/gitconfig" ".gitconfig"
+# LINK .gitignore_global
+check_and_link "git/gitignore_global" ".gitignore_global"
 
 # MKDR .ssh/
 mkdir -p ~/.ssh
 # COPY .ssh/config
 check_and_copy "ssh/config" ".ssh/config"
 
-# LINK screen-layouts/
-check_and_link "screen-layouts" "screen-layouts"
