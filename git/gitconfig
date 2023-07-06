@@ -1,6 +1,7 @@
 [user]
 	name = Eric Pinto
 	email = eric.pinto@socialpoint.es
+	signingkey = B5672CE52C097956
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
@@ -48,5 +49,8 @@
         ciw = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [init]
         templatedir = ~/git-templates
-[url "ssh://git@github.com"]
-	insteadOf = https://github.com
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

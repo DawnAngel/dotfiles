@@ -1,0 +1,32 @@
+# .bashrc
+
+_project_completions()
+{
+    if [ "${#COMP_WORDS[@]}" == "2" ]; then
+        COMPREPLY=($(compgen -W "backend go" "${COMP_WORDS[1]}"))
+        return
+
+    elif [ "${#COMP_WORDS[@]}" == "3" ]; then
+        OPS=""
+        if [ "${COMP_WORDS[1]}" == "go" ]; then
+            for f in ~/Projects/sp/golang/src/github.com/socialpoint/*; do
+                if [ -d "$f" ]; then
+                    OPS="${OPS} $(basename $f)"
+                fi
+            done
+        elif [ "${COMP_WORDS[1]}" == "backend" ]; then
+            for f in ~/Projects/sp/*; do
+                if [ -d "$f" ]; then
+                    OPS="${OPS} $(basename $f)"
+                fi
+            done
+        fi
+        COMPREPLY=($(compgen -W "${OPS}" "${COMP_WORDS[2]}"))
+
+    else
+        return
+    fi
+}
+
+complete -F _project_completions aa
+#complete -W "aaa bbb ccc" aa

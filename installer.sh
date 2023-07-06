@@ -14,6 +14,18 @@ check_and_link () {
     fi
 }
 
+root_check_and_link () {
+    ORIGIN=$1
+    DESTINATION=$2
+
+    if [ ! -L ${DESTINATION} ]; then
+        echo "LINK: ${DESTINATION} ✅"
+        ln -s ${BASEDIR}/${ORIGIN} ${DESTINATION}
+    else
+        echo "LINK: ${DESTINATION} ✘"
+    fi
+}
+
 check_and_copy () {
     ORIGIN=$1
     DESTINATION=$2
@@ -27,10 +39,10 @@ check_and_copy () {
 }
 
 # LINK .vimrc
-check_and_link "vimrc" ".vimrc"
+check_and_link ".vimrc" ".vimrc"
 
 # LINK .bash_profile
-check_and_link "bash_profile" ".bash_profile"
+check_and_link ".bash_profile" ".bash_profile"
 
 # MKDR .bash/
 mkdir -p ~/.bash
@@ -38,8 +50,12 @@ mkdir -p ~/.bash
 check_and_copy "bash/aliases" ".bash/aliases"
 # COPY .bash/profile_macosx
 check_and_copy "bash/profile_macosx" ".bash/profile_macosx"
-# COPY .bash/profile_macosx
+# COPY .bash/profile_linux
 check_and_copy "bash/profile_linux" ".bash/profile_linux"
+# COPY .bash/profile
+check_and_copy "bash/profile" ".bash/profile"
+# LINK .bash/common.sh
+check_and_link "bash/common.sh" ".bash/common.sh"
 
 # MKDR .bash_plugins/
 mkdir -p ~/.bash_plugins
@@ -55,6 +71,12 @@ check_and_link "bash_plugins/make-completion" ".bash_plugins/make-completion"
 check_and_link "bash_plugins/ng-completion" ".bash_plugins/ng-completion"
 # LINK .bash_plugins/npm-completion/
 check_and_link "bash_plugins/npm-completion" ".bash_plugins/npm-completion"
+# LINK .bash_plugins/iterm/
+check_and_link "bash_plugins/iterm2" ".bash_plugins/iterm2"
+
+
+# LINK .oh-my-zsh-custom
+check_and_link "oh-my-zsh" ".oh-my-zsh-custom"
 
 # LINK git-templates/
 check_and_link "git/git-templates" "git-templates"
@@ -68,3 +90,5 @@ mkdir -p ~/.ssh
 # COPY .ssh/config
 check_and_copy "ssh/config" ".ssh/config"
 
+# LINK executable "aa" (alias for iterm2_open_project.sh)
+root_check_and_link "bin/iterm2_open_project.sh" "/usr/local/bin/aa"

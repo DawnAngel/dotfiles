@@ -11,3 +11,6 @@ PATH="$PATH:~/.composer/vendor/bin/"
 
 # Adjust the PATH for macports local binaries (If macports is installed)
 PATH="$PATH:/opt/local/bin:/opt/local/sbin/"
+
+# Projects where autocompleter will find
+ITERM2_PROJECTS_PATH=""
